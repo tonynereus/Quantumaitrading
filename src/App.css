@@ -1,0 +1,64 @@
+:root{
+  --foreground1: #092635;
+  --foreground: #103143;
+  --foreground2: #103141;
+  --frag:#72FEEB;
+}
+
+body{
+  width: 100vw !important;
+  overflow-x: hidden !important;
+}
+#root{
+  width: 100% !important;
+}
+
+.bgf1{
+  background-color: var(--foreground1) !important;
+}
+.bgf2{
+  background-color: var(--foreground2) !important;
+}
+.bgf{
+  background-color: var(--foreground) !important;
+}
+.title{
+  font-style: clamp(40px, 6.6vw, 56px) !important;
+}
+
+.pText{
+  font-size: clamp(16px, 1.8vw, 18px) !important; 
+}
+.uag-star{
+  color: gold !important;
+}
+
+.signinBox{
+  border:1px solid #163D50;
+  border-radius: 6px !important;
+}
+.bgFrag{
+  background-color: var(--frag) !important;
+  color: var(--foreground1) !important;
+}
+.textFrag{
+  color: var(--frag) !important;
+}
+.elonSection{
+  width: 100% !important;
+  height: 100% !important;
+  background-color: rgba(0,0,0,0.25);
+}
+
+.elonContent{
+  background-color: rgba(0,0,0,0.45);
+  border-radius: 7px !important;
+}
+
+ td , tr{
+  border :1px solid #ccc !important;
+  border-collapse: collapse;
+}
+td{
+  padding: 10px;
+}
