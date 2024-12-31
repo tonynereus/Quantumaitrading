@@ -21,10 +21,12 @@ import staff4 from "../assets/4.webp";
 import staff5 from "../assets/5.webp";
 import staff6 from "../assets/6.webp";
 import banner from "../assets/4-1.webp";
+import { Link } from "react-router-dom";
 
 
 import innovation from "../assets/banner.webp";
 import Footer from "../components/Footer";
+import NavBar from "../components/NavBar";
 
 
 export default () => {
@@ -199,28 +201,10 @@ export default () => {
         <>
             <div className="w-100 bgf">
                 <Header />
+                <NavBar />
                 <div className="w-100 row m-0 justify-content-center">
                     <div className="col-11">
                         <div className="py-2 w-100">
-                            <div className="mb-3 w-100 row m-0 d-flex justify-content-between align-items-center">
-                                <div className="col-6 col-md-4 col-lg-3">
-                                    <img
-                                        src={Logo}
-                                        className="img-fluid"
-                                        style={{ width: '100%' }}
-                                    />
-                                </div>
-                                <div className="col-6 col-md-4 col-lg-3 justify-content-end d-flex">
-                                    <div className="d-md-flex gap-3 d-none">
-                                        <div className="btn text-white">Login</div>
-                                        <div className="btn bgFrag">Sign Up</div>
-                                    </div>
-                                    <div className="d-flex gap-3 d-md-none">
-                                        <FontAwesomeIcon icon={faBars} color="#ccc" />
-                                    </div>
-                                </div>
-                            </div>
-
                             <div className="w-100 row m-0">
                                 <div className="col-md-6 text-white">
                                     <h1 className="title">
@@ -268,7 +252,7 @@ export default () => {
                                         <div className="d-flex gap-3">
                                             <div className="bg-white" style={{ height: 50, width: 6, borderRadius: 14 }}></div>
                                             <div>
-                                                By creating an account, you are agreeing to our <span className="textFrag">Terms of Use</span>  and <span className="textFrag">Privacy Policy</span>.
+                                                By creating an account, you are agreeing to our <Link to="/term"><span className="textFrag">Terms of Use</span></Link>  and <Link to="/privacy-policy"><span className="textFrag">Privacy Policy</span></Link>.
                                             </div>
                                         </div>
                                     </div>
@@ -303,11 +287,13 @@ export default () => {
                                     Immerse yourself in the world of automated trading with Quantum AI, a groundbreaking platform crafted by none other than Elon Musk himself. Fusing the visionary insights of Musk with the power of artificial intelligence, Quantum AI introduces a paradigm shift in the way we approach financial markets. This platform harnesses the capabilities of advanced algorithms and machine learning to enable seamless and intelligent trading. Named Quantum AI, it represents the pinnacle of innovation in automated trading, designed to empower users with a sophisticated and efficient tool for navigating the complexities of the financial landscape. Join Quantum AI now and embark on a journey at the forefront of Elon Musk’s foray into the future of trading.
                                 </p>
                                 <div className="w-100 d-flex justify-content-center">
-                                    <div className="btn bgFrag">
-                                        <b>
-                                            Get Started
-                                        </b>
-                                    </div>
+                                    <Link to="/signup">
+                                        <div className="btn bgFrag">
+                                            <b>
+                                                Get Started
+                                            </b>
+                                        </div>
+                                    </Link>
                                 </div>
                             </div>
                         </div>

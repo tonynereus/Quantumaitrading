@@ -1,4 +1,6 @@
 import logo from "../svgs/Logo.svg";
+import { Link } from "react-router-dom";
+
 
 export default () => {
     return (
@@ -42,8 +44,13 @@ export default () => {
                                     SUPPORT
                                 </p>
                                 <div className="mt-3">
-                                    <p className="textFrag">Privacy Policy</p>
-                                    <p className="textFrag">Term of Use</p>
+                                    <Link to="/term">
+                                        <p className="textFrag">Term of Use</p>
+                                    </Link>
+                                    <Link to="/privacy-policy">
+                                        <p className="textFrag">Privacy Policy</p>
+                                    </Link>
+                                   
                                 </div>
                             </div>
                             <div>
@@ -51,9 +58,12 @@ export default () => {
                                     COMPANY
                                 </p>
                                 <div className="mt-3">
-                                    <p className="textFrag">About Us</p>
-                                    <p className="textFrag">Our Team</p>
-                                    <p className="textFrag">Contact</p>
+                                    <Link to="/about">
+                                        <p className="textFrag">About Us</p>
+                                    </Link>
+                                    <Link to="/contact">
+                                        <p className="textFrag">Contact</p>
+                                    </Link>
                                 </div>
                             </div>
                         </div>
