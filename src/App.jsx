@@ -7,7 +7,7 @@ import Signup from './pages/Signup';
 import Term from './pages/Term';
 import Privacy from './pages/Privacy';
 import About from './pages/About';
-import Contact from './pages/contact';
+import Contact from './pages/Contact';
 
 
 function App() {
