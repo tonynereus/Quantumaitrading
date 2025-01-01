@@ -4,11 +4,14 @@ import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import Footer from "../components/Footer";
 import NavBar from "../components/NavBar";
+import { Spin } from "antd";
+import { useNavigate } from "react-router-dom";
+import signupapi from "../utils/apis";
 
 export default () => {
   const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
+    firstN: "",
+    lastN: "",
     email: "",
     phone: "",
   });
@@ -23,11 +26,12 @@ export default () => {
     setFormData({ ...formData, phone });
   };
 
+  const nav = useNavigate();
   const handleSubmit = async () => {
     setIsLoading(true);
     setMessage("");
     try {
-      const response = await fetch("https://your-api-endpoint.com/signup", {
+      const response = await fetch(signupapi, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -36,7 +40,8 @@ export default () => {
       });
 
       if (response.ok) {
-        setMessage("Sign-up successful! Welcome aboard.");
+        alert("Sign-up successful! Welcome aboard.");
+        nav("/");
       } else {
         setMessage("An error occurred. Please try again.");
       }
@@ -71,7 +76,7 @@ export default () => {
                   <div className="py-2">
                     <input
                       type="text"
-                      name="firstName"
+                      name="firstN"
                       className="form-control"
                       placeholder="First Name"
                       onChange={handleInputChange}
@@ -80,7 +85,7 @@ export default () => {
                   <div className="py-2">
                     <input
                       type="text"
-                      name="lastName"
+                      name="lastN"
                       className="form-control"
                       placeholder="Last Name"
                       onChange={handleInputChange}
@@ -110,11 +115,7 @@ export default () => {
                       disabled={isLoading}
                     >
                       {isLoading ? (
-                        <img
-                          src="/loading.gif"
-                          alt="Loading"
-                          style={{ height: 20 }}
-                        />
+                        <Spin size="small" />
                       ) : (
                         "Sign Up"
                       )}

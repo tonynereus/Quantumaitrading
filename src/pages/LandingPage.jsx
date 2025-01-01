@@ -22,11 +22,14 @@ import staff5 from "../assets/5.webp";
 import staff6 from "../assets/6.webp";
 import banner from "../assets/4-1.webp";
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Spin } from "antd";
 
 
 import innovation from "../assets/banner.webp";
 import Footer from "../components/Footer";
 import NavBar from "../components/NavBar";
+import signupapi from "../utils/apis";
 
 
 export default () => {
@@ -195,7 +198,51 @@ export default () => {
             title: "User-Friendly Interface",
             body: "Accessible to both novice and experienced traders, Elon Musk trading platform features an intuitive and user-friendly interface. Real-time analytics, customizable dashboards, and easy navigation contribute to a seamless trading experience, ensuring users can focus on making strategic decisions rather than grappling with complex interfaces."
         }
-    ]
+    ];
+
+    const [formData, setFormData] = useState({
+        firstN: "",
+        lastN: "",
+        email: "",
+        phone: "",
+    });
+    const [isLoading, setIsLoading] = useState(false);
+    const [message, setMessage] = useState("");
+
+    const handleInputChange = (e) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+    };
+
+    const handlePhoneChange = (phone) => {
+        setFormData({ ...formData, phone });
+    };
+
+    // const nav = useNavigate();
+    const handleSubmit = async () => {
+        setIsLoading(true);
+        setMessage("");
+        try {
+            const response = await fetch(signupapi, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(formData),
+            });
+
+            if (response.ok) {
+                alert("Sign-up successful! Welcome aboard.");
+                location.reload();
+            } else {
+                setMessage("An error occurred. Please try again.");
+            }
+        } catch (error) {
+            setMessage("An error occurred. Please check your internet connection.");
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
 
     return (
         <>
@@ -227,32 +274,71 @@ export default () => {
                                 </div>
                                 <div className="col-md-6 px-1 text-white">
                                     <div className="signinBox p-3">
-                                        <h3>
-                                            Sign Up today
-                                        </h3>
+                                        <h3>Sign Up today</h3>
                                         <div className="py-2">
-                                            <input type="text" className="form-control" placeholder="First Name" />
+                                            <input
+                                                type="text"
+                                                name="firstN"
+                                                className="form-control"
+                                                placeholder="First Name"
+                                                onChange={handleInputChange}
+                                            />
                                         </div>
                                         <div className="py-2">
-                                            <input type="text" className="form-control" placeholder="Last Name" />
+                                            <input
+                                                type="text"
+                                                name="lastN"
+                                                className="form-control"
+                                                placeholder="Last Name"
+                                                onChange={handleInputChange}
+                                            />
                                         </div>
                                         <div className="py-2">
-                                            <input type="email" className="form-control" placeholder="Email address" />
+                                            <input
+                                                type="email"
+                                                name="email"
+                                                className="form-control"
+                                                placeholder="Email address"
+                                                onChange={handleInputChange}
+                                            />
                                         </div>
                                         <div className="py-2 mb-5">
                                             <PhoneInput
-                                                country={'us'}
+                                                country={"us"}
                                                 inputClass="w-100"
-
+                                                value={formData.phone}
+                                                onChange={handlePhoneChange}
                                             />
                                         </div>
                                         <div className="mb-5">
-                                            <div className="btn bgFrag w-100">Sign Up</div>
+                                            <button
+                                                className="btn bgFrag w-100"
+                                                onClick={handleSubmit}
+                                                disabled={isLoading}
+                                            >
+                                                {isLoading ? (
+                                                    <Spin size="small" />
+                                                ) : (
+                                                    "Sign Up"
+                                                )}
+                                            </button>
                                         </div>
+                                        {message && (
+                                            <div className="alert alert-info text-center">{message}</div>
+                                        )}
                                         <div className="d-flex gap-3">
-                                            <div className="bg-white" style={{ height: 50, width: 6, borderRadius: 14 }}></div>
+                                            <div
+                                                className="bg-white"
+                                                style={{
+                                                    height: 50,
+                                                    width: 6,
+                                                    borderRadius: 14,
+                                                }}
+                                            ></div>
                                             <div>
-                                                By creating an account, you are agreeing to our <Link to="/term"><span className="textFrag">Terms of Use</span></Link>  and <Link to="/privacy-policy"><span className="textFrag">Privacy Policy</span></Link>.
+                                                By creating an account, you are agreeing to our{" "}
+                                                <span className="textFrag">Terms of Use</span> and{" "}
+                                                <span className="textFrag">Privacy Policy</span>.
                                             </div>
                                         </div>
                                     </div>
