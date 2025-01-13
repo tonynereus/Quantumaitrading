@@ -27,7 +27,7 @@ export default () => {
                         </div>
                         <div className="col-6 col-md-4 col-lg-3 justify-content-end d-flex">
                             <div className="d-md-flex gap-3 d-none">
-                                <Link to="/signup">
+                                <Link to="/signin">
                                     <div className="btn text-white mb-2">Login</div>
                                 </Link>
 
@@ -55,7 +55,7 @@ export default () => {
                         <FontAwesomeIcon icon={faXmark} onClick={toggleSidebar} />
                     </div>
                     <div className="sidebar-content">
-                        <Link to="/signup">
+                        <Link to="/signin">
                             <div className="btn text-white mb-2">Login</div>
                         </Link>
 

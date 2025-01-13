@@ -30,6 +30,7 @@ import innovation from "../assets/banner.webp";
 import Footer from "../components/Footer";
 import NavBar from "../components/NavBar";
 import signupapi from "../utils/apis";
+import apis from "../assets/apis";
 
 
 export default () => {
@@ -222,7 +223,7 @@ export default () => {
         setIsLoading(true);
         setMessage("");
         try {
-            const response = await fetch(signupapi, {
+            const response = await fetch(apis.signup, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -234,7 +235,13 @@ export default () => {
                 alert("Sign-up successful! Welcome aboard.");
                 location.reload();
             } else {
-                setMessage("An error occurred. Please try again.");
+                const res = await response.json();
+                if (res.message) {
+                    setMessage(res.message);
+                } else {
+                    throw new Error("Sign up error");
+                }
+
             }
         } catch (error) {
             setMessage("An error occurred. Please check your internet connection.");
@@ -299,6 +306,15 @@ export default () => {
                                                 name="email"
                                                 className="form-control"
                                                 placeholder="Email address"
+                                                onChange={handleInputChange}
+                                            />
+                                        </div>
+                                        <div className="py-2">
+                                            <input
+                                                type="password"
+                                                name="pswd"
+                                                className="form-control"
+                                                placeholder="Password"
                                                 onChange={handleInputChange}
                                             />
                                         </div>

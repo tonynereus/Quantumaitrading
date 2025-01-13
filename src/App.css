@@ -65,3 +65,62 @@ td{
 a{
   text-decoration: none !important;
 }
+
+
+#wrapper{
+  background-color: #F5F6FA !important;
+}
+.bg-offwhite{
+  background-color: var(--offwhite) !important;
+}
+.dashboar-top{
+  background-color: var(--offwhite) !important;
+}
+.dashboar-top *{
+  color:#000000
+}
+.noinput:focus{
+  outline: none !important;
+}
+.noinput{
+  background-color: transparent !important;
+  border: none !important;
+}
+
+.ProfileT{
+  font-weight: 700 !important;
+}
+.ProfileT,.ProfileTe{
+  font-size: 11px !important;
+}
+.sticky-top{
+  z-index: 1000 !important;
+}
+.collection-product{
+  display: grid;
+  grid-template-rows: 15% 70% 15%;
+  border-radius: 7px;
+  border: 1px solid #00000033;
+}
+.sub{
+  cursor:pointer;
+}
+@keyframes roll {
+  from{
+    transform: rotate(0deg);
+  }
+  to{
+    transform: rotate(360deg);
+  }
+}
+.my-spin{
+  display: inline-block;
+  width: 15px;
+  aspect-ratio: 1/1;
+  border: 2px solid white;
+  margin-left: 4px;
+  border-radius: 70%;
+  border-right-color: transparent;
+  animation: roll 0.9s linear none infinite ;
+}
+

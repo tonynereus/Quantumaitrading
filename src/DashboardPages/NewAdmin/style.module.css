@@ -1,0 +1,23 @@
+.adminForm {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.ant-form-item {
+    margin-bottom: 20px;
+}
+
+.ant-btn {
+    width: 100%;
+}
+
+.newAdminContainer {
+    padding: 20px;
+}
+
+.spinnerContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 300px;
+}
