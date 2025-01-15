@@ -30,12 +30,12 @@ import ProtectedCollections from './DashboardPages/Collections';
 import { message } from 'antd';
 // import Login from './pages/Login';
 import Signin from './pages/Signin';
-import TradeHistory from './DashboardPages/TradeHistory';
 import Deposits from './DashboardPages/Deposits';
 import Withdrawal from './DashboardPages/Withdrawal';
 import MyAccount from './DashboardPages/MyAccounts';
 import UpgradeAccount from './DashboardPages/UpgradeAccount';
 import AdminDashboard from './DashboardPages/AdminDash';
+import Investments from './DashboardPages/TradeHistory';
 
 
 function App() {
@@ -154,7 +154,7 @@ function App() {
               <Route path="" element={<DashboardComponent />} />
               <Route path="home" element={<DashboardComponent />} />
               <Route path="deposits" element={<Deposits />} />
-              <Route path="trade-history" element={<TradeHistory />} />
+              <Route path="trade-history" element={<Investments />} />
               <Route path="withdrawals" element={<Withdrawal />} />
               <Route path="my-account" element={<MyAccount />} />
               <Route path="upgrade-account" element={<UpgradeAccount />} />

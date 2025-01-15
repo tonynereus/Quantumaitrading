@@ -41,7 +41,7 @@ function Sidebar({ isOpen, onClose }) {
             </div>
             <div className="list-group list-group-flush">
                 <NavItem to="home" title={"Overview"} />
-                <NavItem to="trade-history" title={"Trade History"} />
+                <NavItem to="trade-history" title={"Investments"} />
                 <NavItem to="deposits" title={"Wallet Deposits"} activePaths={["/dashboard/subcat", "/dashboard/collections", "/dashboard/subcat-items", "/dashboard/add-product", "/dashboard/edit-product"]} />
 
                 <NavItem to="withdrawals" title={"Wallet Withdrawal"} activePaths={["/dashboard/view-order"]} />
