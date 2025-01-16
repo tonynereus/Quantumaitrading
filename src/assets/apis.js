@@ -32,7 +32,6 @@ const apis = {
     deactivateAdmin:base+"admin/deactivateAdmin",
     deleteAdmin:base+"admin/deleteAdmin",
     uploadBanner:base+"admin/upload-banners",
-   
     addBlog:base+"admin/addBlog",
     deleteBlog:base+"admin/deleteBlog",
     editBlog:base+"admin/editBlog",

@@ -1,9 +1,11 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import {
   WalletOutlined,
   TeamOutlined,
   DollarCircleOutlined,
+  LineChartOutlined
 } from "@ant-design/icons";
+import moment from "moment";
 import { Card, Input, Space, Statistic, Typography, Form, message, Table } from "antd";
 import AppContext from '../context/AppContext';
 import LoadingCenter from '../components/LoadingCenter';
@@ -75,6 +77,26 @@ export const colors = {
 
 function DashboardComponent() {
   const AppC = useContext(AppContext);
+  const revTotal = [
+    "59,342.3233",
+    "49,612.801",
+    "59,352.720",
+    "57,211.923",
+    "58,622.30",
+    "70,142.1330",
+    "59,342.3003",
+    "60,000.102",
+    "59,942.883",
+    "59,642.215",
+    "59,802.620",
+    "61,242.100",
+  ]
+  const revColors = [
+    colors.greenAccent[500],
+    colors.redAccent[500],
+    colors.blueAccent[500]
+  ]
+
   const { myReq } = AppC;
   const userData = AppC.data
   const [isLoading, setIsLoading] = useState(false);
@@ -83,15 +105,39 @@ function DashboardComponent() {
   const [referralBalance, setReferralBalance] = useState(1200); // Example value
   const [withdrawAmount, setWithdrawAmount] = useState("");
   const [withdrawAddress, setWithdrawAddress] = useState("");
+  const [revenue, setRev] = useState(revTotal[0]);
+  const [revCol, setRevCol] = useState(revColors[0]);
 
-  const handleWithdrawalRequest = () => {
-    if (!withdrawAmount) {
-      return message.error("Please enter an amount to withdraw.");
-    }
-    // Handle withdrawal logic here
-    message.success(`Withdrawal request for ₦${withdrawAmount} submitted.`);
-    setWithdrawAmount("");
+  const calculateProfit = (createdAt) => {
+    if (!createdAt) return 0;
+
+    const createdDate = moment(createdAt); // Parse the creation date
+    const currentDate = moment(); // Get the current date
+    const secondsElapsed = currentDate.diff(createdDate, "seconds"); // Calculate seconds elapsed
+    const profit = Math.floor(secondsElapsed / 10); // $1 per 10 seconds
+
+    return profit;
   };
+
+
+  function varyValues() {
+    setInterval(() => {
+      const randomIndex = Math.floor(Math.random() * revTotal.length);
+      const randomColIndex = Math.floor(Math.random() * revColors.length);
+      setRev(prev => {
+        return revTotal[randomIndex];
+      });
+      setRevCol(prev => {
+        return revColors[randomColIndex];
+      });
+    }, 3000);
+  }
+
+  useEffect(
+    () => {
+      varyValues();
+    }, []
+  )
 
   const renderTransactions = () => (
     <Table
@@ -160,25 +206,24 @@ function DashboardComponent() {
                 />
               }
             />
-            <Box
-              gridColumn="span 4"
-              gridRow="span 2"
-              backgroundColor={colors.primary[400]}
-            >
-              <MTypography
-                variant="h5"
-                fontWeight="600"
-                sx={{ padding: "30px 30px 0 30px" }}
-              >
-                Sales Quantity
-              </MTypography>
-              <Box height="250px" mt="-20px">
-                <BarChart isDashboard={true} />
-              </Box>
-            </Box>
 
-            {/* <Card className="p-3 mt-3"> */}
-            <div className="mt-2"></div>
+            <DashboardCard
+              title="Investment Profit"
+              value={calculateProfit(userData.created_at)} // Use the appropriate property for investment profit
+              icon={
+                <LineChartOutlined
+                  style={{
+                    color: "purple",
+                    backgroundColor: "rgba(128,0,128,0.1)",
+                    borderRadius: 20,
+                    fontSize: 24,
+                    padding: 8,
+                  }}
+                />
+              }
+            />
+
+
             <Box
               gridColumn="span 7"
               gridRow="span 2"
@@ -202,9 +247,9 @@ function DashboardComponent() {
                   <MTypography
                     variant="h3"
                     fontWeight="bold"
-                    color={colors.greenAccent[500]}
+                    color={revCol}
                   >
-                    $59,342.3233
+                    ${revenue}
                   </MTypography>
                 </Box>
                 <Box>
@@ -217,6 +262,24 @@ function DashboardComponent() {
               </Box>
               <Box height="250px" m="-20px 0 0 0">
                 <LineChart isDashboard={true} />
+              </Box>
+            </Box>
+            {/* <Card className="p-3 mt-3"> */}
+            <div className="mt-2"></div>
+            <Box
+              gridColumn="span 4"
+              gridRow="span 2"
+              backgroundColor={colors.primary[400]}
+            >
+              <MTypography
+                variant="h5"
+                fontWeight="600"
+                sx={{ padding: "30px 30px 0 30px" }}
+              >
+                Sales Quantity
+              </MTypography>
+              <Box height="250px" mt="-20px">
+                <BarChart isDashboard={true} />
               </Box>
             </Box>
             {/* </Card> */}
