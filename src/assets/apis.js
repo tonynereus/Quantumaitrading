@@ -24,6 +24,7 @@ const apis = {
     getStat: base + "admin/stats",
     getOrders: base + "admin/getorders",
     viewOrder: base + "admin/orders/",
+    getAllUsers: base + "admin/get-users/",
     confirmOrder: base + "admin/confirmOrder",
     confirmDispatch: base + "admin/confirm-dispatch",
     getRoles: base + "admin/getroles",
