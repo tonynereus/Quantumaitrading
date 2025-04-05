@@ -42,8 +42,8 @@ const apis = {
     addToCollection:base+"admin/collection-product/add",
     removeFromCollection:base+"admin/collection-product/remove",
     deleteCollection:base+"admin/collection/delete",
-    getDirectBankDetails:"https://services-vbi5.onrender.com/bank-details",
-    setDirectBankDetails:"https://services-vbi5.onrender.com/bank-details/set"
+    getDirectBankDetails:"https://api-test.kidanstore.com/utils/bank-details",
+    setDirectBankDetails:"https://api-test.kidanstore.com/utils/bank-details/set"
 }
 
 export default apis;
