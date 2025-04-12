@@ -255,6 +255,22 @@ function AdminDashboard() {
                         <Input />
                     </Form.Item>
 
+                    <Form.Item
+                        label="Address"
+                        name="address"
+                        rules={[{ message: "Please enter address" }]}
+                    >
+                        <Input />
+                    </Form.Item>
+
+                    <Form.Item
+                        label="Extra Column"
+                        name="extra"
+                        rules={[{ message: "Please enter valid input" }]}
+                    >
+                        <Input />
+                    </Form.Item>
+
                     <Button type="primary" htmlType="submit" block loading={updatingBankTfLoading}>
                         Update Bank Details
                     </Button>
